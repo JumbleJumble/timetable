@@ -21,10 +21,11 @@ body {
     max-width: 400px;
     margin: auto;
     background: white;
-    border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
 }
 
 .period {
@@ -34,13 +35,14 @@ body {
     justify-content: center;
     text-align: center;
     padding: 5px;
-    border-bottom: 1px solid #ddd;
-    transition: background 0.3s;
     color: black;
-    position: relative; /* Add this */
+    position: relative;
+    border-top: 1px solid rgba(0, 0, 0, 0.5); 
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5); 
 }
 
-.period .start-time, .period .end-time {
+.period .start-time,
+.period .end-time {
     position: absolute;
     font-size: 8pt;
     opacity: 0.4;
@@ -56,14 +58,28 @@ body {
     left: 5px;
 }
 
-.lesson { background: #3e40a8; } 
-.break { background: #a8a8a8; } 
-.free-period { background: #68dda3; } 
-.short-gap { background: #ffffff; }
+.lesson {
+    background: #98dfff;
+}
 
-.free-period-text { 
+.break {
+    background: #cacaca;
     font-size: 10pt;
-    opacity: 0.7;
+    border-top: 0;
+    border-bottom: 0;
+}
+
+.free-period {
+    background: #b7ffdb;
+}
+
+.short-gap {
+    background: #ffffff;
+}
+
+.free-period-text {
+    font-size: 10pt;
+    opacity: 0.5;
 }
 
 .subject {
@@ -88,4 +104,5 @@ body {
     right: 0;
     height: 2px;
     background: red;
+    z-index: 0;
 }
