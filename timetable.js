@@ -26,11 +26,19 @@ function renderTimetable(data) {
         div.style.height = `${(duration / (endOfDay - startOfDay)) * 100}vh`;
 
         if (schedule[period.name]) {
+            const session = schedule[period.name];
+            let subjectLabel = session.subject;
+            if (session.session_code.includes("LEARN")) {
+                subjectLabel += " - Learn";
+            } else if (session.session_code.includes("EXP")) {
+                subjectLabel += " - Explore";
+            }
+
             div.classList.add("lesson");
             div.innerHTML = `
-                <div class="subject">${schedule[period.name].subject}</div>
-                <div class="code">${schedule[period.name].session_code}</div>
-                <div class="teachers">${schedule[period.name].teachers.join(", ")}</div>
+                <div class="subject">${subjectLabel}</div>
+                <div class="teacher">${session.teachers.join(", ")}</div>
+                <div class="code">${session.session_code}</div>
             `;
         } else {
             div.classList.add(period.is_lesson ? "free-period" : "break");
