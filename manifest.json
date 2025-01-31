@@ -1,6 +1,6 @@
 {
     "name": "Timetable",
-    "short_name": "Sonny's Timetable",
+    "short_name": "Timetable",
     "start_url": "index.html",
     "display": "standalone",
     "background_color": "#f5f5f5",
