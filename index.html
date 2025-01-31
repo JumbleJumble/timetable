@@ -3,11 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv='cache-control' content='no-cache'> 
+    <meta http-equiv='expires' content='0'> 
+    <meta http-equiv='pragma' content='no-cache'>    
     <title>Timetable</title>
     <link rel="stylesheet" href="timetable.css?v=<?= Date.now() ?">
 </head>
 <body>
+    <div id="day-links">
+        <a href="#" data-day="Monday">Mon</a>
+        <a href="#" data-day="Tuesday">Tue</a>
+        <a href="#" data-day="Wednesday">Wed</a>
+        <a href="#" data-day="Thursday">Thu</a>
+        <a href="#" data-day="Friday">Fri</a>
+    </div>
     <div id="timetable"></div>
-    <script src="timetable.js?v=<?= Date.now() ?"></script>
+    <script src="timetable.js?v=1.0.0"></script>
 </body>
 </html>
