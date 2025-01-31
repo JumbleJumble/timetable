@@ -37,8 +37,24 @@ body {
     border-bottom: 1px solid #ddd;
     transition: background 0.3s;
     color: black;
+    position: relative; /* Add this */
 }
 
+.period .start-time, .period .end-time {
+    position: absolute;
+    font-size: 8pt;
+    opacity: 0.7;
+}
+
+.period .start-time {
+    top: 5px;
+    left: 5px;
+}
+
+.period .end-time {
+    bottom: 5px;
+    left: 5px;
+}
 
 .lesson { background: #dbffe9; } /* Pastel Green */
 .break { background: #fff9e6; } 

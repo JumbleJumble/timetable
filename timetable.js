@@ -38,6 +38,11 @@ function renderTimetable(data, day) {
         div.classList.add("period");
         div.style.height = `${(duration / (endOfDay - startOfDay)) * 100}vh`;
 
+        div.innerHTML = `
+            <div class="start-time">${period.start_time}</div>
+            <div class="end-time">${period.end_time}</div>
+        `;
+
         if (schedule[period.name]) {
             const session = schedule[period.name];
             let subjectLabel = session.subject;
@@ -48,7 +53,7 @@ function renderTimetable(data, day) {
             }
 
             div.classList.add("lesson");
-            div.innerHTML = `
+            div.innerHTML += `
                 <div class="subject">${subjectLabel}</div>
                 <div class="teacher">${session.teachers.join(", ")}</div>
                 <div class="code">${session.session_code}</div>
@@ -56,7 +61,7 @@ function renderTimetable(data, day) {
         } else {
             div.classList.add(period.is_lesson ? "free-period" : "break");
             if (!period.is_lesson) {
-                div.innerHTML = `<div class="period-name">${period.name}</div>`;
+                div.innerHTML += `<div class="period-name">${period.name}</div>`;
             }
         }
 
@@ -81,7 +86,6 @@ function renderTimetable(data, day) {
     if (currentDay === day) {
         drawTimeIndicator(startOfDay, endOfDay);
     }
-    
 }
 
 function toMinutes(time) {
