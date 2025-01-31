@@ -92,6 +92,11 @@ function renderTimetable(data, day) {
             }
         }
 
+        // Check if the period name starts with "P" and place it in the top right corner
+        if (period.name.startsWith("P")) {
+            div.innerHTML += `<div class="period-name top-right">${period.name}</div>`;
+        }
+
         // Check if the current time falls within this period
         if (currentDay === day && currentMinutes >= periodStart && currentMinutes <= periodEnd) {
             timeIndicator = document.createElement("div");

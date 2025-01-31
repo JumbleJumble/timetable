@@ -97,6 +97,15 @@ body {
     left: 5px;
 }
 
+.period .period-name.top-right {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 8pt;
+    opacity: 0.4;
+}
+
+
 .lesson {
     background: #98dfff;
 }
