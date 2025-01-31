@@ -76,7 +76,12 @@ function renderTimetable(data, day) {
         }
     });
 
-    drawTimeIndicator(startOfDay, endOfDay);
+    // Draw time indicator only if the current day matches the displayed day
+    const currentDay = new Date().toLocaleString("en-GB", { weekday: "long" });
+    if (currentDay === day) {
+        drawTimeIndicator(startOfDay, endOfDay);
+    }
+    
 }
 
 function toMinutes(time) {
