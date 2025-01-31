@@ -63,17 +63,19 @@ function renderTimetable(data) {
         }
     });
 
-    function toMinutes(time) {
-        const [hours, minutes] = time.split(":").map(Number);
-        return hours * 60 + minutes;
-    }
+    drawTimeIndicator(startOfDay, endOfDay);
+}
 
-    function drawTimeIndicator(startOfDay, endOfDay) {
-        const now = new Date();
-        const currentMinutes = now.getHours() * 60 + now.getMinutes();
-        const timeIndicator = document.createElement("div");
-        timeIndicator.id = "time-indicator";
-        timeIndicator.style.top = `${((currentMinutes - startOfDay) / (endOfDay - startOfDay)) * 100}vh`;
-        document.getElementById("timetable").appendChild(timeIndicator);
-    }
+function toMinutes(time) {
+    const [hours, minutes] = time.split(":").map(Number);
+    return hours * 60 + minutes;
+}
+
+function drawTimeIndicator(startOfDay, endOfDay) {
+    const now = new Date();
+    const currentMinutes = now.getHours() * 60 + now.getMinutes();
+    const timeIndicator = document.createElement("div");
+    timeIndicator.id = "time-indicator";
+    timeIndicator.style.top = `${((currentMinutes - startOfDay) / (endOfDay - startOfDay)) * 100}vh`;
+    document.getElementById("timetable").appendChild(timeIndicator);
 }
