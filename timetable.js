@@ -36,12 +36,15 @@ function renderTimetable(data) {
 
             div.classList.add("lesson");
             div.innerHTML = `
-            <div class="subject">${subjectLabel}</div>
-            <div class="teacher">${session.teachers.join(", ")}</div>
-            <div class="code">${session.session_code}</div>
-        `;
+                <div class="subject">${subjectLabel}</div>
+                <div class="teacher">${session.teachers.join(", ")}</div>
+                <div class="code">${session.session_code}</div>
+            `;
         } else {
             div.classList.add(period.is_lesson ? "free-period" : "break");
+            if (!period.is_lesson) {
+                div.innerHTML = `<div class="period-name">${period.name}</div>`;
+            }
         }
 
         timetableContainer.appendChild(div);
@@ -59,20 +62,17 @@ function renderTimetable(data) {
             }
         }
     });
-    
-    drawTimeIndicator(startOfDay, endOfDay);
-}
 
-function toMinutes(time) {
-    const [hours, minutes] = time.split(":").map(Number);
-    return hours * 60 + minutes;
-}
+    function toMinutes(time) {
+        const [hours, minutes] = time.split(":").map(Number);
+        return hours * 60 + minutes;
+    }
 
-function drawTimeIndicator(startOfDay, endOfDay) {
-    const now = new Date();
-    const currentMinutes = now.getHours() * 60 + now.getMinutes();
-    const timeIndicator = document.createElement("div");
-    timeIndicator.id = "time-indicator";
-    timeIndicator.style.top = `${((currentMinutes - startOfDay) / (endOfDay - startOfDay)) * 100}vh`;
-    document.getElementById("timetable").appendChild(timeIndicator);
-}
+    function drawTimeIndicator(startOfDay, endOfDay) {
+        const now = new Date();
+        const currentMinutes = now.getHours() * 60 + now.getMinutes();
+        const timeIndicator = document.createElement("div");
+        timeIndicator.id = "time-indicator";
+        timeIndicator.style.top = `${((currentMinutes - startOfDay) / (endOfDay - startOfDay)) * 100}vh`;
+        document.getElementById("timetable").appendChild(timeIndicator);
+    }
