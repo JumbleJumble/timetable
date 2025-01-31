@@ -8,7 +8,8 @@ body {
 #day-links {
     display: flex;
     justify-content: space-around;
-    margin: auto;
+    margin: 0;
+    width: 100%;
     text-align: center;
     padding: 10px 0px;
     margin: 0px 0px;
@@ -30,6 +31,7 @@ body {
     text-transform: uppercase;
     font-size: 8pt;
     padding: 5px 0px;
+    margin-top: env(safe-area-inset-top, 5px);
     transition: background 0.3s, font-size 0.3s;
     max-width: 15%;
     border: 1px solid rgba(0, 0, 0, 0.5)
