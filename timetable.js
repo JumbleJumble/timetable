@@ -76,3 +76,4 @@ function renderTimetable(data) {
         timeIndicator.style.top = `${((currentMinutes - startOfDay) / (endOfDay - startOfDay)) * 100}vh`;
         document.getElementById("timetable").appendChild(timeIndicator);
     }
+}
