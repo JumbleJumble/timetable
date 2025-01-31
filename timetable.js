@@ -2,8 +2,13 @@ document.addEventListener("DOMContentLoaded", function () {
     fetch("timetable.json") // Load the JSON file
         .then(response => response.json())
         .then(data => {
-            renderTimetable(data, new Date().toLocaleString("en-GB", { weekday: "long" }));
+            let currentDay = new Date().toLocaleString("en-GB", { weekday: "long" });
+            if (currentDay === "Saturday" || currentDay === "Sunday") {
+                currentDay = "Monday";
+            }
+            renderTimetable(data, currentDay);
             setupDayLinks(data);
+            setupSwipeEvents(data, currentDay);
         })
         .catch(error => console.error("Error loading timetable:", error));
 });
@@ -28,6 +33,67 @@ function setupDayLinks(data) {
     });
 }
 
+function setupSwipeEvents(data, currentDay) {
+    const timetableContainer = document.getElementById("timetable");
+    let startX = 0;
+    let endX = 0;
+
+    timetableContainer.addEventListener("touchstart", function (event) {
+        startX = event.touches[0].clientX;
+    });
+
+    timetableContainer.addEventListener("touchmove", function (event) {
+        endX = event.touches[0].clientX;
+    });
+
+    timetableContainer.addEventListener("touchend", function () {
+        const threshold = 50; // Minimum distance for a swipe
+        if (startX - endX > threshold) {
+            // Swipe left
+            timetableContainer.classList.add("swipe-left");
+            setTimeout(() => {
+                currentDay = getNextDay(currentDay);
+                renderTimetable(data, currentDay);
+                updateActiveLink(currentDay);
+                timetableContainer.classList.remove("swipe-left");
+            }, 300); // Match the duration of the CSS transition
+        } else if (endX - startX > threshold) {
+            // Swipe right
+            timetableContainer.classList.add("swipe-right");
+            setTimeout(() => {
+                currentDay = getPreviousDay(currentDay);
+                renderTimetable(data, currentDay);
+                updateActiveLink(currentDay);
+                timetableContainer.classList.remove("swipe-right");
+            }, 300); // Match the duration of the CSS transition
+        }
+    });
+}
+
+function getNextDay(currentDay) {
+    const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+    let index = days.indexOf(currentDay);
+    index = (index + 1) % days.length;
+    return days[index];
+}
+
+function getPreviousDay(currentDay) {
+    const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+    let index = days.indexOf(currentDay);
+    index = (index - 1 + days.length) % days.length;
+    return days[index];
+}
+
+function updateActiveLink(currentDay) {
+    const links = document.querySelectorAll("#day-links a");
+    links.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("data-day") === currentDay) {
+            link.classList.add("active");
+        }
+    });
+}
+
 function renderTimetable(data, day) {
     const timetableContainer = document.getElementById("timetable");
     timetableContainer.innerHTML = "";
@@ -40,7 +106,10 @@ function renderTimetable(data, day) {
 
     const now = new Date();
     const currentMinutes = now.getHours() * 60 + now.getMinutes();
-    const currentDay = new Date().toLocaleString("en-GB", { weekday: "long" });
+    let currentDay = new Date().toLocaleString("en-GB", { weekday: "long" });
+    if (currentDay === "Saturday" || currentDay === "Sunday") {
+        currentDay = "Monday";
+    }
 
     let timeIndicator = null;
 
