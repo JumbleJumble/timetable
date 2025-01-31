@@ -29,6 +29,10 @@ function renderTimetable(data, day) {
     let startOfDay = toMinutes(periods[0].start_time);
     let endOfDay = toMinutes(periods[periods.length - 1].end_time);
 
+    const now = new Date();
+    const currentMinutes = now.getHours() * 60 + now.getMinutes();
+    const currentDay = new Date().toLocaleString("en-GB", { weekday: "long" });
+
     periods.forEach((period, index) => {
         const periodStart = toMinutes(period.start_time);
         const periodEnd = toMinutes(period.end_time);
@@ -67,6 +71,14 @@ function renderTimetable(data, day) {
             }
         }
 
+        // Check if the current time falls within this period
+        if (currentDay === day && currentMinutes >= periodStart && currentMinutes <= periodEnd) {
+            const timeIndicator = document.createElement("div");
+            timeIndicator.classList.add("time-indicator");
+            timeIndicator.style.top = `${((currentMinutes - periodStart) / duration) * 100}%`;
+            div.appendChild(timeIndicator);
+        }
+
         timetableContainer.appendChild(div);
 
         // Check for short gap between this period and the next period
@@ -78,28 +90,22 @@ function renderTimetable(data, day) {
                 const gapDiv = document.createElement("div");
                 gapDiv.classList.add("short-gap");
                 gapDiv.style.height = `${(gapDuration / (endOfDay - startOfDay)) * 100}vh`;
+
+                // Check if the current time falls within this gap
+                if (currentDay === day && currentMinutes >= periodEnd && currentMinutes <= nextPeriodStart) {
+                    const timeIndicator = document.createElement("div");
+                    timeIndicator.classList.add("time-indicator");
+                    timeIndicator.style.top = `${((currentMinutes - periodEnd) / gapDuration) * 100}%`;
+                    gapDiv.appendChild(timeIndicator);
+                }
+
                 timetableContainer.appendChild(gapDiv);
             }
         }
     });
-
-    // Draw time indicator only if the current day matches the displayed day
-    const currentDay = new Date().toLocaleString("en-GB", { weekday: "long" });
-    if (currentDay === day) {
-        drawTimeIndicator(startOfDay, endOfDay);
-    }
 }
 
 function toMinutes(time) {
     const [hours, minutes] = time.split(":").map(Number);
     return hours * 60 + minutes;
-}
-
-function drawTimeIndicator(startOfDay, endOfDay) {
-    const now = new Date();
-    const currentMinutes = now.getHours() * 60 + now.getMinutes();
-    const timeIndicator = document.createElement("div");
-    timeIndicator.id = "time-indicator";
-    timeIndicator.style.top = `${((currentMinutes - startOfDay) / (endOfDay - startOfDay)) * 100}vh`;
-    document.getElementById("timetable").appendChild(timeIndicator);
 }
