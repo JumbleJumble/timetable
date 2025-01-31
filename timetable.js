@@ -43,7 +43,7 @@ function renderTimetable(data) {
 }
 
 function toMinutes(time) {
-    const [hours, minutes] = time.split(":".map(Number));
+    const [hours, minutes] = time.split(":").map(Number);
     return hours * 60 + minutes;
 }
 
