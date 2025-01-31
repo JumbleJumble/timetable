@@ -50,23 +50,13 @@ function setupSwipeEvents(data, currentDay) {
         const threshold = 50; // Minimum distance for a swipe
         if (startX - endX > threshold) {
             // Swipe left
-            timetableContainer.classList.add("swipe-left");
-            setTimeout(() => {
-                currentDay = getNextDay(currentDay);
-                renderTimetable(data, currentDay);
-                updateActiveLink(currentDay);
-                timetableContainer.classList.remove("swipe-left");
-            }, 300); // Match the duration of the CSS transition
+            currentDay = getNextDay(currentDay);
         } else if (endX - startX > threshold) {
             // Swipe right
-            timetableContainer.classList.add("swipe-right");
-            setTimeout(() => {
-                currentDay = getPreviousDay(currentDay);
-                renderTimetable(data, currentDay);
-                updateActiveLink(currentDay);
-                timetableContainer.classList.remove("swipe-right");
-            }, 300); // Match the duration of the CSS transition
+            currentDay = getPreviousDay(currentDay);
         }
+        fadeOutAndRenderTimetable(data, currentDay);
+        updateActiveLink(currentDay);
     });
 }
 
@@ -92,6 +82,16 @@ function updateActiveLink(currentDay) {
             link.classList.add("active");
         }
     });
+}
+
+function fadeOutAndRenderTimetable(data, day) {
+    const timetableContainer = document.getElementById("timetable");
+    timetableContainer.classList.add("fade-out");
+
+    setTimeout(() => {
+        renderTimetable(data, day);
+        timetableContainer.classList.remove("fade-out");
+    }, 200); // Match the duration of the CSS transition
 }
 
 function renderTimetable(data, day) {

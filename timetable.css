@@ -41,10 +41,6 @@ body {
     background: rgb(255, 56, 116);
 }
 
-#day-links a:hover {
-    background: rgb(255, 56, 116);
-}
-
 #timetable {
     position: relative;
     margin: calc(env(safe-area-inset-top, 0px) + 60px) 20px 20px 20px; /* Add top margin to avoid overlap with fixed header */
@@ -56,6 +52,12 @@ body {
     border: 1px solid rgba(0, 0, 0, 0.5);
     margin: 20px; /* Add top margin to avoid overlap with fixed header */
     margin-top: calc(env(safe-area-inset-top, 0px) + 50px);
+    transition: opacity 0.2s; /* Add transition for fade effect */
+    opacity: 1; /* Ensure the timetable is visible by default */
+}
+
+#timetable.fade-out {
+    opacity: 0;
 }
 
 .period {
