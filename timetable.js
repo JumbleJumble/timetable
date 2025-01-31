@@ -8,8 +8,9 @@ document.addEventListener("DOMContentLoaded", function () {
         .catch(error => console.error("Error loading timetable:", error));
 });
 
-function setupDayLinks(data, currentDay) {
+function setupDayLinks(data) {
     const links = document.querySelectorAll("#day-links a");
+    const currentDay = new Date().toLocaleString("en-GB", { weekday: "long" });
     links.forEach(link => {
         const day = link.getAttribute("data-day");
         if (day === currentDay) {
@@ -38,6 +39,8 @@ function renderTimetable(data, day) {
     const currentMinutes = now.getHours() * 60 + now.getMinutes();
     const currentDay = new Date().toLocaleString("en-GB", { weekday: "long" });
 
+    let timeIndicator = null;
+
     periods.forEach((period, index) => {
         const periodStart = toMinutes(period.start_time);
         const periodEnd = toMinutes(period.end_time);
@@ -46,6 +49,16 @@ function renderTimetable(data, day) {
         const div = document.createElement("div");
         div.classList.add("period");
         div.style.height = `${(duration / (endOfDay - startOfDay)) * 100}vh`;
+
+        // Remove top border from the first period
+        if (index === 0) {
+            div.style.borderTop = "none";
+        }
+
+        // Remove bottom border from the last period
+        if (index === periods.length - 1) {
+            div.style.borderBottom = "none";
+        }
 
         div.innerHTML = `
             <div class="start-time">${period.start_time}</div>
@@ -78,7 +91,7 @@ function renderTimetable(data, day) {
 
         // Check if the current time falls within this period
         if (currentDay === day && currentMinutes >= periodStart && currentMinutes <= periodEnd) {
-            const timeIndicator = document.createElement("div");
+            timeIndicator = document.createElement("div");
             timeIndicator.classList.add("time-indicator");
             timeIndicator.style.top = `${((currentMinutes - periodStart) / duration) * 100}%`;
             div.appendChild(timeIndicator);
@@ -98,7 +111,7 @@ function renderTimetable(data, day) {
 
                 // Check if the current time falls within this gap
                 if (currentDay === day && currentMinutes >= periodEnd && currentMinutes <= nextPeriodStart) {
-                    const timeIndicator = document.createElement("div");
+                    timeIndicator = document.createElement("div");
                     timeIndicator.classList.add("time-indicator");
                     timeIndicator.style.top = `${((currentMinutes - periodEnd) / gapDuration) * 100}%`;
                     gapDiv.appendChild(timeIndicator);
@@ -108,6 +121,11 @@ function renderTimetable(data, day) {
             }
         }
     });
+
+    // Scroll to the parent div containing the time indicator
+    if (timeIndicator) {
+        timeIndicator.parentElement.scrollIntoView({ behavior: "auto", block: "nearest" });
+    }
 }
 
 function toMinutes(time) {
