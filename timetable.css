@@ -14,6 +14,7 @@ body {
     padding: 10px 0px;
     margin: 0px 0px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    padding-top: env(safe-area-inset-top, 0px);
     position: fixed; /* Fix the position at the top */
     top: 0; /* Align to the top of the viewport */
     left: 0;
@@ -31,7 +32,6 @@ body {
     text-transform: uppercase;
     font-size: 8pt;
     padding: 5px 0px;
-    margin-top: env(safe-area-inset-top, 5px);
     transition: background 0.3s, font-size 0.3s;
     max-width: 15%;
     border: 1px solid rgba(0, 0, 0, 0.5)
@@ -54,7 +54,8 @@ body {
     font-family: sans-serif;
     border-radius: 10px;
     border: 1px solid rgba(0, 0, 0, 0.5);
-    margin: 60px 20px 20px 20px; /* Add top margin to avoid overlap with fixed header */
+    margin: 20px; /* Add top margin to avoid overlap with fixed header */
+    margin-top: calc(env(safe-area-inset-top, 0px) + 50px);
 }
 
 .period {
