@@ -14,7 +14,7 @@ body {
     padding: 10px 0px;
     margin: 0px 0px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-    padding-top: env(safe-area-inset-top, 0px);
+    padding-top: calc(env(safe-area-inset-top, 0px) + 10px);
     position: fixed; /* Fix the position at the top */
     top: 0; /* Align to the top of the viewport */
     left: 0;
@@ -51,7 +51,7 @@ body {
     border-radius: 10px;
     border: 1px solid rgba(0, 0, 0, 0.5);
     margin: 20px; /* Add top margin to avoid overlap with fixed header */
-    margin-top: calc(env(safe-area-inset-top, 0px) + 50px);
+    margin-top: calc(env(safe-area-inset-top, 0px) + 60px);
     transition: opacity 0.2s; /* Add transition for fade effect */
     opacity: 1; /* Ensure the timetable is visible by default */
 }
