@@ -16,7 +16,7 @@ function renderTimetable(data) {
     let startOfDay = toMinutes(periods[0].start_time);
     let endOfDay = toMinutes(periods[periods.length - 1].end_time);
 
-    periods.forEach(period => {
+    periods.forEach((period, index) => {
         const periodStart = toMinutes(period.start_time);
         const periodEnd = toMinutes(period.end_time);
         const duration = periodEnd - periodStart;
@@ -36,17 +36,30 @@ function renderTimetable(data) {
 
             div.classList.add("lesson");
             div.innerHTML = `
-                <div class="subject">${subjectLabel}</div>
-                <div class="teacher">${session.teachers.join(", ")}</div>
-                <div class="code">${session.session_code}</div>
-            `;
+            <div class="subject">${subjectLabel}</div>
+            <div class="teacher">${session.teachers.join(", ")}</div>
+            <div class="code">${session.session_code}</div>
+        `;
         } else {
             div.classList.add(period.is_lesson ? "free-period" : "break");
         }
 
         timetableContainer.appendChild(div);
-    });
 
+        // Check for short gap between this period and the next period
+        if (index < periods.length - 1) {
+            const nextPeriodStart = toMinutes(periods[index + 1].start_time);
+            const gapDuration = nextPeriodStart - periodEnd;
+
+            if (gapDuration > 0 && gapDuration <= 15) { // Assuming short gap is 15 minutes or less
+                const gapDiv = document.createElement("div");
+                gapDiv.classList.add("short-gap");
+                gapDiv.style.height = `${(gapDuration / (endOfDay - startOfDay)) * 100}vh`;
+                timetableContainer.appendChild(gapDiv);
+            }
+        }
+    });
+    
     drawTimeIndicator(startOfDay, endOfDay);
 }
 

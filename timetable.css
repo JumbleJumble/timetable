@@ -31,6 +31,7 @@ body {
 .lesson { background: #FFD1DC; } /* Pastel Pink */
 .break { background: #FFECB3; } /* Pastel Yellow */
 .free-period { background: #B3E5FC; } /* Pastel Blue */
+.short-gap { background: #616161; } /* Grey */
 
 .subject {
     font-size: 12pt;
