@@ -10,7 +10,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function setupDayLinks(data) {
     const links = document.querySelectorAll("#day-links a");
-    const currentDay = new Date().toLocaleString("en-GB", { weekday: "long" });
+    let currentDay = new Date().toLocaleString("en-GB", { weekday: "long" });
+    if (currentDay === "Saturday" || currentDay === "Sunday") {
+        currentDay = "Monday";
+    }
     links.forEach(link => {
         const day = link.getAttribute("data-day");
         if (day === currentDay) {
