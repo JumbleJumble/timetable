@@ -1,17 +1,30 @@
 document.addEventListener("DOMContentLoaded", function () {
     fetch("timetable.json") // Load the JSON file
         .then(response => response.json())
-        .then(data => renderTimetable(data))
+        .then(data => {
+            renderTimetable(data, new Date().toLocaleString("en-GB", { weekday: "long" }));
+            setupDayLinks(data);
+        })
         .catch(error => console.error("Error loading timetable:", error));
 });
 
-function renderTimetable(data) {
+function setupDayLinks(data) {
+    const links = document.querySelectorAll("#day-links a");
+    links.forEach(link => {
+        link.addEventListener("click", function (event) {
+            event.preventDefault();
+            const day = event.target.getAttribute("data-day");
+            renderTimetable(data, day);
+        });
+    });
+}
+
+function renderTimetable(data, day) {
     const timetableContainer = document.getElementById("timetable");
     timetableContainer.innerHTML = "";
 
-    const today = new Date().toLocaleString("en-GB", { weekday: "long" });
     const periods = data.periods;
-    const schedule = data.week[today] || {};
+    const schedule = data.week[day] || {};
 
     let startOfDay = toMinutes(periods[0].start_time);
     let endOfDay = toMinutes(periods[periods.length - 1].end_time);
