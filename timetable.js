@@ -51,12 +51,15 @@ function setupSwipeEvents(data, currentDay) {
         if (startX - endX > threshold) {
             // Swipe left
             currentDay = getNextDay(currentDay);
-        } else if (endX - startX > threshold) {
+        }
+        if (endX - startX > threshold) {
             // Swipe right
             currentDay = getPreviousDay(currentDay);
         }
-        fadeOutAndRenderTimetable(data, currentDay);
-        updateActiveLink(currentDay);
+        if (Math.abs(startX - endX) > threshold) {
+            fadeOutAndRenderTimetable(data, currentDay);
+            updateActiveLink(currentDay);
+        }
     });
 }
 
