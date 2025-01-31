@@ -1,0 +1,51 @@
+{
+    "periods": [
+      { "name": "PR", "start_time": "08:20", "end_time": "09:00", "is_lesson": true },
+      { "name": "P1", "start_time": "09:05", "end_time": "09:45", "is_lesson": true },
+      { "name": "P2", "start_time": "09:50", "end_time": "10:30", "is_lesson": true },
+      { "name": "Break 1", "start_time": "10:30", "end_time": "10:45", "is_lesson": false },
+      { "name": "P3", "start_time": "10:45", "end_time": "11:25", "is_lesson": true },
+      { "name": "P4", "start_time": "11:30", "end_time": "12:10", "is_lesson": true },
+      { "name": "Break 2", "start_time": "12:10", "end_time": "12:50", "is_lesson": false },
+      { "name": "P5", "start_time": "12:50", "end_time": "13:30", "is_lesson": true },
+      { "name": "P6", "start_time": "13:35", "end_time": "14:15", "is_lesson": true },
+      { "name": "Break 3", "start_time": "14:15", "end_time": "14:30", "is_lesson": false },
+      { "name": "P7", "start_time": "14:30", "end_time": "15:10", "is_lesson": true },
+      { "name": "P8", "start_time": "15:15", "end_time": "15:55", "is_lesson": true }
+    ],
+    "week": {
+      "Monday": {
+        "PR": { "subject": "Assembly", "session_code": "8L ASSEMBLY AC-24/25", "teachers": ["Sean Edwards"] },
+        "P3": { "subject": "English", "session_code": "8L ENG LEARN 1 AC-24/25", "teachers": ["Gemma Tilley", "Kimberley Cazas-Hale"] },
+        "P4": { "subject": "STEM", "session_code": "8L STEM LEARN AC-24/25", "teachers": ["Gamze Cinar", "Julie Lewis"] },
+        "P5": { "subject": "Science", "session_code": "8L SCI LEARN 1 AC-24/25", "teachers": ["Gamze Cinar", "Ian Lindner"] },
+        "P6": { "subject": "English", "session_code": "8A ENG EXP 2 AC-24/25", "teachers": ["Corrina Madden"] },
+        "P7": { "subject": "Maths", "session_code": "8L MAT LEARN 1 AC-24/25", "teachers": ["Amber Hodge", "Sharon Ludden", "Tracey Williams"] },
+        "P8": { "subject": "Maths", "session_code": "8A MAT EXP 24 AC-24/25", "teachers": ["David Neary"] }
+      },
+      "Tuesday": {
+        "PR": { "subject": "Cycle Testing", "session_code": "8L CYCLE TESTING AC-24/25", "teachers": ["Emma Crosby", "Sean Edwards"] },
+        "P1": { "subject": "Cycle Testing", "session_code": "8L CYCLE TESTING AC-24/25", "teachers": ["Emma Crosby", "Sean Edwards"] },
+        "P2": { "subject": "Film Studies", "session_code": "8L FIL LEARN AC-24/25", "teachers": ["Christopher Beer", "Christian Stavri"] },
+        "P3": { "subject": "Film Studies", "session_code": "8A FIL EXP 2 AC-24/25", "teachers": ["Cheryl Graham"] },
+        "P5": { "subject": "Computer Science", "session_code": "8L CSC LEARN AC-24/25", "teachers": ["Miss Kathy Butcher", "Stuart Ball"] },
+        "P8": { "subject": "PSHE", "session_code": "8L PSHE AC-24/25", "teachers": ["Miss Jasmine Marshall-Fraser", "Sean Edwards"] }
+      },
+      "Wednesday": {
+        "PR": { "subject": "Reflect", "session_code": "8 SEAL REF AC-24/25", "teachers": ["Xuejing Song"] },
+        "P1": { "subject": "English", "session_code": "8A ENG EXP 2 AC-24/25", "teachers": ["Corrina Madden"] },
+        "P3": { "subject": "Film Studies", "session_code": "8A FIL EXP 2 AC-24/25", "teachers": ["Cheryl Graham"] },
+        "P6": { "subject": "Music", "session_code": "8A MUS EXP 4 AC-24/25", "teachers": ["Joe Millson"] }
+      },
+      "Thursday": {
+        "P3": { "subject": "Creative Media", "session_code": "8A CREA EXP 2 AC-24/25", "teachers": ["Emily Welham"] },
+        "P6": { "subject": "Maths", "session_code": "8L MAT LEARN 1 AC-24/25", "teachers": ["Amber Hodge", "Sharon Ludden", "Tracey Williams"] }
+      },
+      "Friday": {
+        "P1": { "subject": "Science", "session_code": "8A SCI EXP 6 AC-24/25", "teachers": ["Beverley Ndlovu"] },
+        "P5": { "subject": "STEM", "session_code": "8A STEM EXP 2 AC-24/25", "teachers": ["Xuejing Song"] },
+        "P8": { "subject": "English", "session_code": "8A ENG EXP 2 AC-24/25", "teachers": ["Neil Williams"] }
+      }
+    }
+  }
+  
