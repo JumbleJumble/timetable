@@ -62,6 +62,8 @@ function renderTimetable(data, day) {
             div.classList.add(period.is_lesson ? "free-period" : "break");
             if (!period.is_lesson) {
                 div.innerHTML += `<div class="period-name">${period.name}</div>`;
+            } else {
+                div.innerHTML += `<div class="free-period-text">(free period)</div>`;
             }
         }
 

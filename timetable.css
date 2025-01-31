@@ -43,7 +43,7 @@ body {
 .period .start-time, .period .end-time {
     position: absolute;
     font-size: 8pt;
-    opacity: 0.7;
+    opacity: 0.4;
 }
 
 .period .start-time {
@@ -56,10 +56,15 @@ body {
     left: 5px;
 }
 
-.lesson { background: #dbffe9; } /* Pastel Green */
-.break { background: #fff9e6; } 
-.free-period { background: #d7e9ff; } 
+.lesson { background: #3e40a8; } 
+.break { background: #a8a8a8; } 
+.free-period { background: #68dda3; } 
 .short-gap { background: #ffffff; }
+
+.free-period-text { 
+    font-size: 10pt;
+    opacity: 0.7;
+}
 
 .subject {
     font-size: 12pt;
