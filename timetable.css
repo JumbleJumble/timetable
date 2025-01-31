@@ -15,6 +15,14 @@ body {
     padding: 10px;
 }
 
+#day-links a.active {
+    font-size: 10pt;
+}
+
+#day-links a:hover {
+    background: #ddd;
+}
+
 #timetable {
     position: relative;
     width: 100%;
@@ -39,6 +47,14 @@ body {
     position: relative;
     border-top: 1px solid rgba(0, 0, 0, 0.5); 
     border-bottom: 1px solid rgba(0, 0, 0, 0.5); 
+}
+
+.period:first-child {
+    border-top: none;
+}
+
+.period:last-child {
+    border-bottom: none;
 }
 
 .period .start-time,
@@ -98,11 +114,10 @@ body {
     opacity: 0.5;
 }
 
-#time-indicator {
+.time-indicator {
     position: absolute;
     left: 0;
     right: 0;
     height: 2px;
-    background: red;
-    z-index: 0;
+    background: rgba(255, 0, 0, 0.5);
 }

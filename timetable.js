@@ -8,12 +8,17 @@ document.addEventListener("DOMContentLoaded", function () {
         .catch(error => console.error("Error loading timetable:", error));
 });
 
-function setupDayLinks(data) {
+function setupDayLinks(data, currentDay) {
     const links = document.querySelectorAll("#day-links a");
     links.forEach(link => {
+        const day = link.getAttribute("data-day");
+        if (day === currentDay) {
+            link.classList.add("active");
+        }
         link.addEventListener("click", function (event) {
             event.preventDefault();
-            const day = event.target.getAttribute("data-day");
+            links.forEach(l => l.classList.remove("active"));
+            link.classList.add("active");
             renderTimetable(data, day);
         });
     });
