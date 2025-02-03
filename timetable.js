@@ -37,13 +37,17 @@ function setupSwipeEvents(data, currentDay) {
     const timetableContainer = document.getElementById("timetable");
     let startX = 0;
     let endX = 0;
+    let startY = 0;
+    let endY = 0;
 
     timetableContainer.addEventListener("touchstart", function (event) {
         startX = event.touches[0].clientX;
+        startY = event.touches[0].clientY;
     });
 
     timetableContainer.addEventListener("touchmove", function (event) {
         endX = event.touches[0].clientX;
+        endY = event.touches[0].clientY;
     });
 
     timetableContainer.addEventListener("touchend", function () {
@@ -56,7 +60,10 @@ function setupSwipeEvents(data, currentDay) {
             // Swipe right
             currentDay = getPreviousDay(currentDay);
         }
-        if (Math.abs(startX - endX) > threshold) {
+
+        let xmovement = Math.abs(startX - endX);
+        let ymovement = Math.abs(startY - endY);
+        if (xmovement > threshold && xmovement > ymovement) {
             fadeOutAndRenderTimetable(data, currentDay);
             updateActiveLink(currentDay);
         }
@@ -125,20 +132,12 @@ function renderTimetable(data, day) {
         div.classList.add("period");
         div.style.height = `${(duration / (endOfDay - startOfDay)) * 100}vh`;
 
-        // Remove top border from the first period
-        if (index === 0) {
-            div.style.borderTop = "none";
-        }
-
-        // Remove bottom border from the last period
-        if (index === periods.length - 1) {
-            div.style.borderBottom = "none";
-        }
-
-        div.innerHTML = `
+        if (period.is_lesson) {
+            div.innerHTML = `
             <div class="start-time">${period.start_time}</div>
             <div class="end-time">${period.end_time}</div>
         `;
+        }
 
         if (schedule[period.name]) {
             const session = schedule[period.name];

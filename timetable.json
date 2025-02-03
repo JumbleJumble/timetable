@@ -34,15 +34,19 @@
       "Wednesday": {
         "PR": { "subject": "Reflect", "session_code": "8 SEAL REF AC-24/25", "teachers": ["Xuejing Song"] },
         "P1": { "subject": "English", "session_code": "8A ENG EXP 2 AC-24/25", "teachers": ["Corrina Madden"] },
-        "P3": { "subject": "Film Studies", "session_code": "8A FIL EXP 2 AC-24/25", "teachers": ["Cheryl Graham"] },
-        "P6": { "subject": "Music", "session_code": "8A MUS EXP 4 AC-24/25", "teachers": ["Joe Millson"] }
+        "P4": { "subject": "Science", "session_code": "8A SCI EXP 6 AC-24/25", "teachers": ["Beverley Ndlovu"] },
+        "P6": { "subject": "Music", "session_code": "8A MUS EXP 4 AC-24/25", "teachers": ["Joe Millson"] },
+        "P7": { "subject": "Music", "session_code": "8A MUS EXP 4 AC-24/25", "teachers": ["Joe Millson"] }
       },
       "Thursday": {
         "P3": { "subject": "Creative Media", "session_code": "8A CREA EXP 2 AC-24/25", "teachers": ["Emily Welham"] },
+        "P4": { "subject": "Creative Media", "session_code": "8A CREA EXP 2 AC-24/25", "teachers": ["Emily Welham"] },
         "P6": { "subject": "Maths", "session_code": "8L MAT LEARN 1 AC-24/25", "teachers": ["Amber Hodge", "Sharon Ludden", "Tracey Williams"] }
       },
       "Friday": {
         "P1": { "subject": "Science", "session_code": "8A SCI EXP 6 AC-24/25", "teachers": ["Beverley Ndlovu"] },
+        "P2": { "subject": "Maths", "session_code": "8A MAT EXP 24 AC-24/25", "teachers": ["Laura Hastings"] },
+        "P3": { "subject": "Computer Science", "session_code": "8L CSC EXP AC-24/25", "teachers": ["Miss Kathy Butcher"] },
         "P5": { "subject": "STEM", "session_code": "8A STEM EXP 2 AC-24/25", "teachers": ["Xuejing Song"] },
         "P8": { "subject": "English", "session_code": "8A ENG EXP 2 AC-24/25", "teachers": ["Neil Williams"] }
       }
