@@ -46,12 +46,13 @@ body {
     margin: calc(env(safe-area-inset-top, 0px) + 60px) 20px 20px 20px; /* Add top margin to avoid overlap with fixed header */
     background: white;
     overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 10px 12px rgba(0, 0, 0, 0.4);
     font-family: sans-serif;
     border-radius: 10px;
-    border: 1px solid rgba(0, 0, 0, 0.5);
-    margin: 20px; /* Add top margin to avoid overlap with fixed header */
+    border: 1px solid rgba(0, 0, 0, 0.6);
+    margin: 20px; 
     margin-top: calc(env(safe-area-inset-top, 0px) + 60px);
+    margin-bottom: calc(env(safe-area-inset-top, 0px) + 12px);
     transition: opacity 0.2s; /* Add transition for fade effect */
     opacity: 1; /* Ensure the timetable is visible by default */
 }
@@ -69,8 +70,8 @@ body {
     padding: 5px;
     color: black;
     position: relative;
-    border-top: 1px solid rgba(0, 0, 0, 0.5); 
-    border-bottom: 1px solid rgba(0, 0, 0, 0.5); 
+    border-top: 1px solid rgba(0, 0, 0, 0.3); 
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3); 
 }
 
 .period:first-child {
@@ -89,7 +90,8 @@ body {
 }
 
 .period.break .period-name {
-    color: black;
+    color: rgb(158, 158, 158);
+    z-index: 1;
 }
 
 .period .start-time {
@@ -115,6 +117,7 @@ body {
     background: #98dfff;
 }
 
+
 .break {
     background: #eeeeee;
     font-size: 10pt;
@@ -132,23 +135,28 @@ body {
 
 .free-period-text {
     font-size: 10pt;
-    opacity: 0.5;
+    color:rgb(53, 151, 61);
+    z-index: 1;
 }
 
 .subject {
     font-size: 12pt;
     font-weight: bold;
     margin-bottom: 3px;
+    z-index: 1;
 }
 
 .teacher {
     font-size: 10pt;
+    z-index: 1;
     margin-bottom: 8px;
+    opacity: 0.7;
 }
 
 .code {
     font-size: 8pt;
-    opacity: 0.5;
+    color:rgb(89, 137, 192);
+    z-index: 1;
 }
 
 .time-indicator {
@@ -156,5 +164,5 @@ body {
     left: 0;
     right: 0;
     height: 2px;
-    background: rgba(255, 0, 0, 0.5);
+    background: rgba(255, 0, 0, 0.8);
 }
