@@ -165,6 +165,7 @@ function renderTimetable(data) {
         // Check if the current time falls within this period
         let today = new Date().toLocaleString("en-GB", { weekday: "long" });
         if (currentDay === today && currentMinutes >= periodStart && currentMinutes <= periodEnd) {
+            console.log("A");
             timeIndicator = document.createElement("div");
             timeIndicator.classList.add("time-indicator");
             timeIndicator.style.top = `${((currentMinutes - periodStart) / duration) * 100}%`;
@@ -185,6 +186,7 @@ function renderTimetable(data) {
 
                 // Check if the current time falls within this gap
                 if (currentDay === today && currentMinutes >= periodEnd && currentMinutes <= nextPeriodStart) {
+                    console.log("B");
                     timeIndicator = document.createElement("div");
                     timeIndicator.classList.add("time-indicator");
                     timeIndicator.style.top = `${((currentMinutes - periodEnd) / gapDuration) * 100}%`;

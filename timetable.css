@@ -135,7 +135,7 @@ body {
 
 .free-period-text {
     font-size: 10pt;
-    color:rgb(53, 151, 61);
+    color:rgb(93, 129, 96);
     z-index: 1;
 }
 
@@ -164,5 +164,10 @@ body {
     left: 0;
     right: 0;
     height: 2px;
-    background: rgba(255, 0, 0, 0.8);
+    --col: rgba(255, 0, 0, 0.8);
+    border-top: 2px dotted var(--col);
+}
+
+.short-gap .time-indicator {
+    position: relative;
 }
