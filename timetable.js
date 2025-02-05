@@ -1,9 +1,11 @@
 var currentDay = "";
+var timetableData = null; // Store timetable data globally
 
 document.addEventListener("DOMContentLoaded", function () {
     fetch("timetable.json") // Load the JSON file
         .then(response => response.json())
         .then(data => {
+            timetableData = data; // Save globally for use by updateTimeIndicator()
             currentDay = new Date().toLocaleString("en-GB", { weekday: "long" });
             if (currentDay === "Saturday" || currentDay === "Sunday") {
                 currentDay = "Monday";
@@ -11,6 +13,9 @@ document.addEventListener("DOMContentLoaded", function () {
             renderTimetable(data);
             setupDayLinks(data);
             setupSwipeEvents(data);
+            updateTimeIndicator(); // Call once immediately
+            // Then update the time indicator every few seconds (e.g. every 10 seconds)
+            setInterval(updateTimeIndicator, 10000);
         })
         .catch(error => console.error("Error loading timetable:", error));
 });
@@ -100,6 +105,8 @@ function fadeOutAndRenderTimetable(data, day) {
     setTimeout(() => {
         renderTimetable(data, day);
         timetableContainer.classList.remove("fade-out");
+        // Immediately update the time indicator after rendering a new timetable
+        updateTimeIndicator();
     }, 200); // Match the duration of the CSS transition
 }
 
@@ -113,10 +120,9 @@ function renderTimetable(data) {
     let startOfDay = toMinutes(periods[0].start_time);
     let endOfDay = toMinutes(periods[periods.length - 1].end_time);
 
+    // Get the current time once here for layout purposes
     const now = new Date();
     const currentMinutes = now.getHours() * 60 + now.getMinutes();
-
-    let timeIndicator = null;
 
     periods.forEach((period, index) => {
         const periodStart = toMinutes(period.start_time);
@@ -125,12 +131,15 @@ function renderTimetable(data) {
 
         const div = document.createElement("div");
         div.classList.add("period");
+        // Tag this block with its start/end times (in minutes) for later updates
+        div.dataset.start = periodStart;
+        div.dataset.end = periodEnd;
         div.style.height = `${(duration / (endOfDay - startOfDay)) * 100}vh`;
 
         if (period.is_lesson) {
             div.innerHTML = `
-            <div class="start-time">${period.start_time}</div>
-            <div class="end-time">${period.end_time}</div>`;
+                <div class="start-time">${period.start_time}</div>
+                <div class="end-time">${period.end_time}</div>`;
         }
 
         if (schedule[period.name]) {
@@ -162,16 +171,6 @@ function renderTimetable(data) {
             div.innerHTML += `<div class="period-name top-right">${period.name}</div>`;
         }
 
-        // Check if the current time falls within this period
-        let today = new Date().toLocaleString("en-GB", { weekday: "long" });
-        if (currentDay === today && currentMinutes >= periodStart && currentMinutes <= periodEnd) {
-            console.log("A");
-            timeIndicator = document.createElement("div");
-            timeIndicator.classList.add("time-indicator");
-            timeIndicator.style.top = `${((currentMinutes - periodStart) / duration) * 100}%`;
-            div.appendChild(timeIndicator);
-        }
-
         timetableContainer.appendChild(div);
 
         // Check for short gap between this period and the next period
@@ -182,29 +181,59 @@ function renderTimetable(data) {
             if (gapDuration > 0 && gapDuration <= 15) { // Assuming short gap is 15 minutes or less
                 const gapDiv = document.createElement("div");
                 gapDiv.classList.add("short-gap");
+                // Tag the gap with its start/end times
+                gapDiv.dataset.start = periodEnd;
+                gapDiv.dataset.end = nextPeriodStart;
                 gapDiv.style.height = `${(gapDuration / (endOfDay - startOfDay)) * 100}vh`;
 
-                // Check if the current time falls within this gap
-                if (currentDay === today && currentMinutes >= periodEnd && currentMinutes <= nextPeriodStart) {
-                    console.log("B");
-                    timeIndicator = document.createElement("div");
-                    timeIndicator.classList.add("time-indicator");
-                    timeIndicator.style.top = `${((currentMinutes - periodEnd) / gapDuration) * 100}%`;
-                    gapDiv.appendChild(timeIndicator);
-                }
-
+                // Optionally, you can add a label to the gap if needed
                 timetableContainer.appendChild(gapDiv);
             }
         }
     });
 
-    // Scroll to the parent div containing the time indicator
-    if (timeIndicator) {
-        timeIndicator.parentElement.scrollIntoView({ behavior: "auto", block: "nearest" });
-    }
+    // Optionally, scroll to the block with the time indicator once it’s added
+    // (The updateTimeIndicator() call below will handle scrolling when needed.)
+    // updateTimeIndicator();
 }
 
 function toMinutes(time) {
     const [hours, minutes] = time.split(":").map(Number);
     return hours * 60 + minutes;
+}
+
+/**
+ * updateTimeIndicator() scans all timetable blocks (periods and gaps)
+ * to find the one covering the current time. It then creates or moves the
+ * time indicator element within that block.
+ */
+function updateTimeIndicator() {
+    const timetableContainer = document.getElementById("timetable");
+    // Remove any existing time indicators
+    const oldIndicators = timetableContainer.querySelectorAll(".time-indicator");
+    oldIndicators.forEach(el => el.remove());
+
+    const now = new Date();
+    const currentMinutes = now.getHours() * 60 + now.getMinutes();
+
+    // Iterate over all children (both periods and gaps) to find the block for the current time.
+    const blocks = timetableContainer.children;
+    for (let block of blocks) {
+        const blockStart = parseInt(block.dataset.start);
+        const blockEnd = parseInt(block.dataset.end);
+        if (currentMinutes >= blockStart && currentMinutes <= blockEnd) {
+            const duration = blockEnd - blockStart;
+            const offsetPercent = ((currentMinutes - blockStart) / duration) * 100;
+
+            // Create and append the time indicator element
+            let timeIndicator = document.createElement("div");
+            timeIndicator.classList.add("time-indicator");
+            timeIndicator.style.top = `${offsetPercent}%`;
+            block.appendChild(timeIndicator);
+
+            // Optionally, scroll the block into view
+            block.scrollIntoView({ behavior: "auto", block: "nearest" });
+            break; // Only one block should match the current time
+        }
+    }
 }

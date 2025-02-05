@@ -52,7 +52,7 @@ body {
     border: 1px solid rgba(0, 0, 0, 0.6);
     margin: 20px; 
     margin-top: calc(env(safe-area-inset-top, 0px) + 60px);
-    margin-bottom: calc(env(safe-area-inset-top, 0px) + 12px);
+    margin-bottom: calc(env(safe-area-inset-top, 0px) + 15px);
     transition: opacity 0.2s; /* Add transition for fade effect */
     opacity: 1; /* Ensure the timetable is visible by default */
 }
