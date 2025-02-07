@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
             setupSwipeEvents(data);
             updateTimeIndicator(); // Call once immediately
             // Then update the time indicator every few seconds (e.g. every 10 seconds)
-            setInterval(updateTimeIndicator, 10000);
+            setInterval(updateTimeIndicator, 1000);
         })
         .catch(error => console.error("Error loading timetable:", error));
 });
@@ -103,7 +103,7 @@ function fadeOutAndRenderTimetable(data, day) {
     timetableContainer.classList.add("fade-out");
 
     setTimeout(() => {
-        renderTimetable(data, day);
+        renderTimetable(data);
         timetableContainer.classList.remove("fade-out");
         // Immediately update the time indicator after rendering a new timetable
         updateTimeIndicator();
@@ -191,10 +191,6 @@ function renderTimetable(data) {
             }
         }
     });
-
-    // Optionally, scroll to the block with the time indicator once it’s added
-    // (The updateTimeIndicator() call below will handle scrolling when needed.)
-    // updateTimeIndicator();
 }
 
 function toMinutes(time) {
@@ -221,7 +217,7 @@ function updateTimeIndicator() {
     for (let block of blocks) {
         const blockStart = parseInt(block.dataset.start);
         const blockEnd = parseInt(block.dataset.end);
-        if (currentMinutes >= blockStart && currentMinutes <= blockEnd) {
+        if (currentMinutes >= blockStart && currentMinutes < blockEnd) {
             const duration = blockEnd - blockStart;
             const offsetPercent = ((currentMinutes - blockStart) / duration) * 100;
 
