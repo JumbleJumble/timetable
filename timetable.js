@@ -45,8 +45,8 @@ function setupSwipeEvents(data) {
     let endY = 0;
 
     timetableContainer.addEventListener("touchstart", function (event) {
-        startX = event.touches[0].clientX;
-        startY = event.touches[0].clientY;
+        endX = startX = event.touches[0].clientX;
+        endY = startY = event.touches[0].clientY;
     });
 
     timetableContainer.addEventListener("touchmove", function (event) {
@@ -122,7 +122,6 @@ function renderTimetable(data) {
 
     // Get the current time once here for layout purposes
     const now = new Date();
-    const currentMinutes = now.getHours() * 60 + now.getMinutes();
 
     periods.forEach((period, index) => {
         const periodStart = toMinutes(period.start_time);
@@ -210,6 +209,12 @@ function updateTimeIndicator() {
     oldIndicators.forEach(el => el.remove());
 
     const now = new Date();
+    const today = now.toLocaleString("en-GB", { weekday: "long" });
+
+    if(currentDay !== today) {
+        return;
+    }
+
     const currentMinutes = now.getHours() * 60 + now.getMinutes();
 
     // Iterate over all children (both periods and gaps) to find the block for the current time.
