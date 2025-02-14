@@ -10,9 +10,9 @@ document.addEventListener("DOMContentLoaded", function () {
             if (currentDay === "Saturday" || currentDay === "Sunday") {
                 currentDay = "Monday";
             }
-            renderTimetable(data);
-            setupDayLinks(data);
-            setupSwipeEvents(data);
+            renderTimetable();
+            setupDayLinks();
+            setupSwipeEvents();
             updateTimeIndicator(); // Call once immediately
             // Then update the time indicator every few seconds (e.g. every 10 seconds)
             setInterval(updateTimeIndicator, 1000);
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .catch(error => console.error("Error loading timetable:", error));
 });
 
-function setupDayLinks(data) {
+function setupDayLinks() {
     const links = document.querySelectorAll("#day-links a");
     links.forEach(link => {
         const day = link.getAttribute("data-day");
@@ -32,29 +32,24 @@ function setupDayLinks(data) {
             links.forEach(l => l.classList.remove("active"));
             link.classList.add("active");
             currentDay = day; // Update currentDay when a link is clicked
-            renderTimetable(data, day);
+            renderTimetable(day);
         });
     });
 }
 
-function setupSwipeEvents(data) {
+function setupSwipeEvents() {
     const timetableContainer = document.getElementById("timetable");
     let startX = 0;
-    let endX = 0;
     let startY = 0;
-    let endY = 0;
 
     timetableContainer.addEventListener("touchstart", function (event) {
-        endX = startX = event.touches[0].clientX;
-        endY = startY = event.touches[0].clientY;
+        startX = event.touches[0].clientX;
+        startY = event.touches[0].clientY;
     });
 
-    timetableContainer.addEventListener("touchmove", function (event) {
-        endX = event.touches[0].clientX;
-        endY = event.touches[0].clientY;
-    });
-
-    timetableContainer.addEventListener("touchend", function () {
+    timetableContainer.addEventListener("touchend", function (event) {  
+        const endX = event.changedTouches[0].clientX;
+        const endY = event.changedTouches[0].clientY;      
         const threshold = 50; // Minimum distance for a swipe
         if (startX - endX > threshold) {
             // Swipe left
@@ -68,7 +63,7 @@ function setupSwipeEvents(data) {
         let xmovement = Math.abs(startX - endX);
         let ymovement = Math.abs(startY - endY);
         if (xmovement > threshold && xmovement > ymovement) {
-            fadeOutAndRenderTimetable(data, currentDay);
+            fadeOutAndRenderTimetable(currentDay);
             updateActiveLink(currentDay);
         }
     });
@@ -98,24 +93,24 @@ function updateActiveLink() {
     });
 }
 
-function fadeOutAndRenderTimetable(data, day) {
+function fadeOutAndRenderTimetable(day) {
     const timetableContainer = document.getElementById("timetable");
     timetableContainer.classList.add("fade-out");
 
     setTimeout(() => {
-        renderTimetable(data);
+        renderTimetable();
         timetableContainer.classList.remove("fade-out");
         // Immediately update the time indicator after rendering a new timetable
         updateTimeIndicator();
     }, 200); // Match the duration of the CSS transition
 }
 
-function renderTimetable(data) {
+function renderTimetable() {
     const timetableContainer = document.getElementById("timetable");
     timetableContainer.innerHTML = "";
 
-    const periods = data.periods;
-    const schedule = data.week[currentDay] || {};
+    const periods = timetableData.periods;
+    const schedule = timetableData.week[currentDay] || {};
 
     let startOfDay = toMinutes(periods[0].start_time);
     let endOfDay = toMinutes(periods[periods.length - 1].end_time);
