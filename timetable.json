@@ -35,7 +35,7 @@
         "PR": { "subject": "Reflect", "session_code": "8 SEAL REF AC-24/25", "teachers": ["Xuejing Song"] },
         "P1": { "subject": "English", "session_code": "8A ENG EXP 2 AC-24/25", "teachers": ["Corrina Madden"] },
         "P4": { "subject": "Science", "session_code": "8A SCI EXP 6 AC-24/25", "teachers": ["Beverley Ndlovu"] },
-        "P5": { "subject": "Anxiety Management", "session_code": "", "teachers": [] },
+        "P5": { "subject": "Anxiety Management", "session_code": "", "teachers": ["Vanessa Baker"] },
         "P6": { "subject": "Music", "session_code": "8A MUS EXP 4 AC-24/25", "teachers": ["Joe Millson"] },
         "P7": { "subject": "Music", "session_code": "8A MUS EXP 4 AC-24/25", "teachers": ["Joe Millson"] }
       },
