@@ -51,18 +51,21 @@ function setupSwipeEvents() {
         const endX = event.changedTouches[0].clientX;
         const endY = event.changedTouches[0].clientY;      
         const threshold = 50; // Minimum distance for a swipe
-        if (startX - endX > threshold) {
+
+        let xmovement = startX - endX;
+        let ymovement = startY - endY;
+        let doSwipe = Math.abs(xmovement) > Math.abs(ymovement) && Math.abs(xmovement) > threshold;
+
+        if (startX - endX > threshold && doSwipe) {
             // Swipe left
             currentDay = getNextDay(currentDay);
         }
-        if (endX - startX > threshold) {
+        if (endX - startX > threshold && doSwipe) {
             // Swipe right
             currentDay = getPreviousDay(currentDay);
         }
 
-        let xmovement = Math.abs(startX - endX);
-        let ymovement = Math.abs(startY - endY);
-        if (xmovement > threshold && xmovement > ymovement) {
+        if (doSwipe) {
             fadeOutAndRenderTimetable(currentDay);
             updateActiveLink(currentDay);
         }
@@ -227,8 +230,6 @@ function updateTimeIndicator() {
             timeIndicator.style.top = `${offsetPercent}%`;
             block.appendChild(timeIndicator);
 
-            // Optionally, scroll the block into view
-            block.scrollIntoView({ behavior: "auto", block: "nearest" });
             break; // Only one block should match the current time
         }
     }
