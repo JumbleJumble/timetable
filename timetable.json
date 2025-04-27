@@ -29,13 +29,13 @@
         "P2": { "subject": "Film Studies", "session_code": "8L FIL LEARN AC-24/25", "teachers": ["Christopher Beer", "Christian Stavri"] },
         "P3": { "subject": "Film Studies", "session_code": "8A FIL EXP 2 AC-24/25", "teachers": ["Cheryl Graham"] },
         "P5": { "subject": "Computer Science", "session_code": "8L CSC LEARN AC-24/25", "teachers": ["Miss Kathy Butcher", "Stuart Ball"] },
+        "P6": { "subject": "Social Skills", "session_code": "", "teachers": ["Vanessa Baker"] },
         "P8": { "subject": "PSHE", "session_code": "8L PSHE AC-24/25", "teachers": ["Miss Jasmine Marshall-Fraser", "Sean Edwards"] }
       },
       "Wednesday": {
         "PR": { "subject": "Reflect", "session_code": "8 SEAL REF AC-24/25", "teachers": ["Xuejing Song"] },
         "P1": { "subject": "English", "session_code": "8A ENG EXP 2 AC-24/25", "teachers": ["Corrina Madden"] },
         "P4": { "subject": "Science", "session_code": "8A SCI EXP 6 AC-24/25", "teachers": ["Beverley Ndlovu"] },
-        "P5": { "subject": "Anxiety Management", "session_code": "", "teachers": ["Vanessa Baker"] },
         "P6": { "subject": "Music", "session_code": "8A MUS EXP 4 AC-24/25", "teachers": ["Joe Millson"] },
         "P7": { "subject": "Music", "session_code": "8A MUS EXP 4 AC-24/25", "teachers": ["Joe Millson"] }
       },
