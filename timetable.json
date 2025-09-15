@@ -15,11 +15,12 @@
     ],
     "week": {
       "Monday": {
+        "PR": { "subject": "Assembly", "session_code": "9L ASSEMBLY AC-25/26", "teachers": ["Dave Adlem"] },
         "P1": { "subject": "English", "session_code": "9L ENG LEARN AC-25/26", "teachers": ["Michelle Sheridan", "Simone Conway"] },
         "P2": { "subject": "Maths", "session_code": "9L MAT LEARN 1 AC-25/26", "teachers": ["Lynley Riley", "Tracey Williams"] },
         "P4": { "subject": "Science", "session_code": "9L SCI LEARN AC-25/26", "teachers": ["Gamze Cinar", "Rhys Jacob"] },
-        "P5": { "subject": "Maths", "session_code": "9A MAT EXP 9 AC-25/26", "teachers": ["Liz Berrimann"] },
-        "P6": { "subject": "Computer Science", "session_code": "9L CSC LEARN AC-25/26", "teachers": ["Miss Kathy Butcher", "Susan Miller"] },
+        "P5": { "subject": "Maths", "session_code": "9A MAT EXP 9 AC-25/26", "teachers": ["Jonathan Hide"] },
+        "P6": { "subject": "Computer Science", "session_code": "9L CSC LEARN AC-25/26", "teachers": ["Miss Kathy Butcher", "James Greenwood"] },
         "P7": { "subject": "Creative Media", "session_code": "9A CREA EXP 2 AC-25/26", "teachers": ["Elizabeth Jones"] },
         "P8": { "subject": "Creative Media", "session_code": "9A CREA EXP 2 AC-25/26", "teachers": ["Elizabeth Jones"] }
       },
@@ -31,19 +32,18 @@
         "P8": { "subject": "English", "session_code": "9A ENG EXP 2 AC-25/26", "teachers": ["Chris Quin"] }
       },
       "Wednesday": {
-        "PR": { "subject": "Assembly", "session_code": "9L ASSEMBLY AC-25/26", "teachers": ["Dave Adlem"] },
         "P2": { "subject": "STEM", "session_code": "9L STEM LEARN AC-25/26", "teachers": ["Anni Crow", "Kadie Cory"] },
-        "P3": { "subject": "Maths", "session_code": "9L MAT LEARN 1 AC-25/26", "teachers": ["TBC AP MAT 3", "Tracey Williams"] },
-        "P6": { "subject": "Maths", "session_code": "9A MAT EXP 9 AC-25/26", "teachers": ["Liz Berrimann"] }
+        "P3": { "subject": "Maths", "session_code": "9L MAT LEARN 1 AC-25/26", "teachers": ["Tasnim Youssef", "Tracey Williams"] },
+        "P6": { "subject": "Maths", "session_code": "9A MAT EXP 9 AC-25/26", "teachers": ["Henrietta Drummond"] }
       },
       "Thursday": {
-        "P2": { "subject": "FIlm Studies", "session_code": "9L FIL LEARN AC-25/26", "teachers": ["Christopher Beer", "Christian Stavri"] },
+        "P2": { "subject": "Film Studies", "session_code": "9L FIL LEARN AC-25/26", "teachers": ["Christopher Beer", "Christian Stavri"] },
         "P7": { "subject": "Science", "session_code": "9A SCI EXP 6 AC-25/26", "teachers": ["Farhana Rifai"] },
         "P8": { "subject": "English", "session_code": "9A ENG EXP 2 AC-25/26", "teachers": ["Chris Quin"] }
       },
       "Friday": {
         "PR": { "subject": "Reflect", "session_code": "9 MAND REF AC-25/26", "teachers": ["Xuejing Song"] },
-        "P1": { "subject": "FIlm Studies", "session_code": "9A FIL EXP 2 AC-25/26", "teachers": ["Christopher Beer"] },
+        "P1": { "subject": "Film Studies", "session_code": "9A FIL EXP 2 AC-25/26", "teachers": ["Christopher Beer"] },
         "P3": { "subject": "Music", "session_code": "9A MUS EXP 4 AC-25/26", "teachers": ["Joe Millson"] },
         "P4": { "subject": "Music", "session_code": "9A MUS EXP 4 AC-25/26", "teachers": ["Joe Millson"] },
         "P5": { "subject": "English", "session_code": "9A ENG EXP 2 AC-25/26", "teachers": ["Chris Quin"] },
