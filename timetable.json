@@ -20,7 +20,7 @@
         "P2": { "subject": "Maths", "session_code": "9L MAT LEARN 1 AC-25/26", "teachers": ["Lynley Riley", "Tracey Williams"] },
         "P4": { "subject": "Science", "session_code": "9L SCI LEARN AC-25/26", "teachers": ["Gamze Cinar", "Rhys Jacob"] },
         "P5": { "subject": "Maths", "session_code": "9A MAT EXP 9 AC-25/26", "teachers": ["Jonathan Hide"] },
-        "P6": { "subject": "Computer Science", "session_code": "9L CSC LEARN AC-25/26", "teachers": ["Miss Kathy Butcher", "James Greenwood"] },
+        "P6": { "subject": "Computer Science", "session_code": "9L CSC LEARN AC-25/26", "teachers": ["Miss Kathy Butcher", "James Greenwood"] }
       },
       "Tuesday": {
         "PR": { "subject": "Cycle Testing", "session_code": "9L CYCLE TEST AC-25/26", "teachers": ["Dave Adlem", "Jennifer Udall"] },
